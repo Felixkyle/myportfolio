@@ -1139,7 +1139,7 @@
     <main>
         <div id="hero">
             <div>
-                <div class="who up" style="--i:0"><img class="av" src="public/images/profile/linkdeln-img.jpeg"
+                <div class="who up" style="--i:0"><img class="av" src="images/profile/linkdeln-img.jpeg"
                         alt="Felix Olajide" onerror="ie(this)">
                     <div><b>Felix Olajide</b><span>Fullstack &amp; mobile app developer</span></div>
                 </div>
@@ -1155,7 +1155,7 @@
         </div>
         <section id="about">
             <div class="wrap about rv">
-                <figure class="glass portrait"><img src="public/images/profile/linkdeln-img.jpeg" alt="Felix Olajide"
+                <figure class="glass portrait"><img src="images/profile/linkdeln-img.jpeg" alt="Felix Olajide"
                         onerror="ie(this)">
                     <figcaption><b>Felix Olajide</b><span>Fullstack &amp; mobile app developer</span></figcaption>
                 </figure>
@@ -1281,8 +1281,8 @@
         <div class="lbin" id="lbin"></div>
     </div>
     <script>
-        const I = 'public/images/', $ = id => document.getElementById(id);
-        // HOW IMAGES WORK: every project has its own folder, public/images/<dir>/ . "th" is the cover image, "s" are the other screens (file names without .png).
+        const I = 'images/', $ = id => document.getElementById(id);
+        // HOW IMAGES WORK: every project has its own folder, images/<dir>/ . "th" is the cover image, "s" are the other screens (file names without .png).
         // ADD A PROJECT: copy a block, set dir (folder name), put its screenshots in that folder, and list their names. "url" adds a Visit live site button.
         const P = [
             { dir: 'crossborder', t: 'Crossborder Marketing', d: 'International digital marketing agency site with campaign-led visuals and lead generation pages.', g: ['HTML', 'CSS', 'JavaScript'], th: 'cbm-01', s: ['cbm-02', 'cbm-03', 'cbm-04', 'cbm-05', 'cbm-06', 'cbm-07'] },
@@ -1299,8 +1299,8 @@
         const A = [{ t: 'Clapmi', d: 'Livestreaming where viewers take part in live competitions and shared rewards. Collaboration.', i: 'app-img-01' }, { t: 'JKL', d: 'Afterschool program management: attendance, schedules and reports in one place. Collaboration.', i: 'app-img-02' }, { t: 'Signal Wallet', d: 'Personal project that tracks signals and market changes in crypto.', i: 'app-img-06' }];
         const S = ['React', 'TypeScript', 'JavaScript', 'Node.js', 'Flutter', 'Tailwind CSS', 'WordPress', 'Figma'];
         const img = (d, n, a) => `<img src="${I}${d}/${n}.png" alt="${a}" loading="lazy" onerror="ie(this)">`;
-        // if a file is not found under public/images/, try images/ once (for hosts that serve from the public folder); then hide it or show a labelled placeholder
-        function ie(i) { const u = i.getAttribute('src'); if (!i.dataset.f) { i.dataset.f = 1; i.src = u.indexOf('public/images/') === 0 ? u.slice(7) : 'public/' + u; return } i.style.display = 'none'; const f = i.closest('.fr'); if (f) f.classList.add('ph0') }
+        // if a file is not found under images/, try images/ once (for hosts that serve from the public folder); then hide it or show a labelled placeholder
+        function ie(i) { const u = i.getAttribute('src'); if (!i.dataset.f) { i.dataset.f = 1; i.src = u.indexOf('images/') === 0 ? u.slice(7) : 'public/' + u; return } i.style.display = 'none'; const f = i.closest('.fr'); if (f) f.classList.add('ph0') }
         const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
         // hero stack
         const st = $('stack');
