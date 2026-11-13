@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Felix Olajide — Fullstack & Mobile App Developer</title>
+    <meta name="description"
+        content="Felix Olajide, fullstack and mobile app developer. Websites, platforms and Flutter apps built to look credible and run fast.">
+    <meta name="theme-color" content="#0a1220">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap"
         rel="stylesheet">
@@ -910,12 +915,6 @@
             }
         }
 
-        .trio .glass,
-        .app,
-        .soc .glass,
-        .contact {
-            animation: br 7s ease-in-out infinite
-        }
 
         .trio div:nth-child(2),
         .app:nth-child(2),
@@ -1035,7 +1034,7 @@
             }
         }
 
-        /* comet-glow cursor (desktop mouse only) */
+        /* cursor (desktop mouse only): a small point that eases after the mouse and opens into a labelled lens */
         .fine,
         .fine * {
             cursor: none !important
@@ -1046,58 +1045,58 @@
             cursor: text !important
         }
 
-        #glow {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 85;
-            display: none
-        }
-
-        #cdot,
-        #cring {
+        #cur {
             position: fixed;
             left: 0;
             top: 0;
+            z-index: 300;
+            display: none;
+            place-items: center;
+            width: 8px;
+            height: 8px;
+            margin: -4px 0 0 -4px;
             border-radius: 50%;
+            background: var(--ink);
+            border: 0 solid var(--accent);
             pointer-events: none;
             opacity: 0;
-            display: none;
-            transition: opacity .25s
+            will-change: transform;
+            transition: width .32s cubic-bezier(.2, .8, .2, 1), height .32s cubic-bezier(.2, .8, .2, 1), margin .32s cubic-bezier(.2, .8, .2, 1), background .3s, border-width .3s, opacity .25s
         }
 
-        #cdot {
-            width: 6px;
-            height: 6px;
-            margin: -3px 0 0 -3px;
-            background: #d6e6fb;
-            box-shadow: 0 0 12px rgba(134, 174, 224, .9);
-            z-index: 300
+        #cur span {
+            font: 600 .64rem var(--b);
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--ink);
+            opacity: 0;
+            transition: opacity .2s
         }
 
-        #cring {
-            width: 28px;
-            height: 28px;
-            margin: -14px 0 0 -14px;
-            border: 1px solid rgba(165, 205, 250, .5);
-            z-index: 299;
-            transition: opacity .25s, width .22s, height .22s, margin .22s, border-color .22s, background .22s
+        .fine #cur {
+            display: grid
         }
 
-        #cring.hov {
-            width: 48px;
-            height: 48px;
-            margin: -24px 0 0 -24px;
-            border-color: rgba(190, 220, 255, .75);
-            background: rgba(134, 174, 224, .08)
+        #cur.link {
+            width: 46px;
+            height: 46px;
+            margin: -23px 0 0 -23px;
+            background: rgba(134, 174, 224, .12);
+            border-width: 1px
         }
 
-        .fine #glow,
-        .fine #cdot,
-        .fine #cring {
-            display: block
+        #cur.view {
+            width: 88px;
+            height: 88px;
+            margin: -44px 0 0 -44px;
+            background: rgba(134, 174, 224, .16);
+            border-width: 1px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px)
+        }
+
+        #cur.view span {
+            opacity: 1
         }
 
         .fr.ph0 {
@@ -1113,14 +1112,709 @@
             font: 700 clamp(1.1rem, 2.6vw, 1.9rem)/1.3 var(--d);
             color: var(--ink)
         }
+
+        /* ===== theme: day / night ===== */
+        :root {
+            color-scheme: dark
+        }
+
+        :root[data-theme="light"] {
+            color-scheme: light;
+            --bg: #dbe7f8;
+            --ink: #0f1b2e;
+            --mute: #51627b;
+            --accent: #2f5f99;
+            --deep: #2f5f99;
+            --line: rgba(30, 60, 110, .18);
+            --glass: rgba(255, 255, 255, .55)
+        }
+
+        body {
+            transition: background-color .35s, color .35s
+        }
+
+        [data-theme="light"] body::before {
+            background: radial-gradient(1000px 600px at 75% 0, rgba(90, 145, 220, .55), transparent 60%), radial-gradient(800px 600px at 0 70%, rgba(90, 145, 220, .32), transparent 60%)
+        }
+
+        [data-theme="light"] header {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(255, 255, 255, .5)), rgba(219, 231, 248, .6);
+            box-shadow: inset 0 -1px 0 rgba(30, 60, 110, .08)
+        }
+
+        [data-theme="light"] .glass {
+            background: linear-gradient(145deg, rgba(255, 255, 255, .9), rgba(255, 255, 255, .5) 42%, rgba(190, 215, 250, .35));
+            border-color: rgba(30, 60, 110, .14);
+            box-shadow: inset 0 1px 0 #fff, 0 22px 44px -24px rgba(30, 60, 110, .4)
+        }
+
+        [data-theme="light"] .glass::after {
+            background: linear-gradient(115deg, transparent 32%, rgba(255, 255, 255, .7) 46%, transparent 60%);
+            background-size: 260% 100%;
+            background-position: 120% 0
+        }
+
+        [data-theme="light"] .btn:not(.main) {
+            background: linear-gradient(145deg, rgba(255, 255, 255, .95), rgba(255, 255, 255, .55));
+            box-shadow: inset 0 1px 0 #fff
+        }
+
+        [data-theme="light"] .btn.main {
+            color: #fff
+        }
+
+        [data-theme="light"] input,
+        [data-theme="light"] textarea {
+            background: rgba(255, 255, 255, .8);
+            box-shadow: inset 0 1px 4px rgba(30, 60, 110, .14)
+        }
+
+        [data-theme="light"] #lb {
+            background: rgba(222, 233, 248, .96)
+        }
+
+        [data-theme="light"] .pane,
+        [data-theme="light"] .fr,
+        [data-theme="light"] .ph {
+            background: #cddcf2
+        }
+
+        [data-theme="light"] .fr.ph0 {
+            background: linear-gradient(145deg, rgba(255, 255, 255, .6), rgba(255, 255, 255, .2)), #cddcf2
+        }
+
+        [data-theme="light"] .fr,
+        [data-theme="light"] .pane {
+            box-shadow: 0 40px 70px -30px rgba(30, 60, 110, .45)
+        }
+
+        [data-theme="light"] h1 span {
+            background: linear-gradient(100deg, #2f5f99, #5b91cf, #2a568c, #2f5f99);
+            background-size: 240% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        @media(max-width:860px) {
+            [data-theme="light"] nav ul {
+                background: rgba(219, 231, 248, .98)
+            }
+        }
+
+        .ra {
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .tg {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line);
+            background: var(--glass);
+            color: var(--ink);
+            cursor: pointer;
+            transition: border-color .2s, transform .2s
+        }
+
+        .tg:hover {
+            border-color: var(--accent);
+            transform: rotate(14deg)
+        }
+
+        .tg svg {
+            width: 20px;
+            height: 20px
+        }
+
+        .tg .sun {
+            display: none
+        }
+
+        [data-theme="light"] .tg .sun {
+            display: block
+        }
+
+        [data-theme="light"] .tg .moon {
+            display: none
+        }
+
+        nav ul {
+            gap: 26px
+        }
+
+        /* ===== waving hand ===== */
+        .wave {
+            display: inline-block;
+            transform-origin: 70% 75%;
+            animation: wv 2.6s ease-in-out infinite
+        }
+
+        @keyframes wv {
+
+            0%,
+            55%,
+            100% {
+                transform: rotate(0)
+            }
+
+            8% {
+                transform: rotate(16deg)
+            }
+
+            16% {
+                transform: rotate(-9deg)
+            }
+
+            24% {
+                transform: rotate(14deg)
+            }
+
+            32% {
+                transform: rotate(-6deg)
+            }
+
+            40% {
+                transform: rotate(10deg)
+            }
+        }
+
+        /* ===== numbers ===== */
+        #stats {
+            padding: 0 0 20px
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px
+        }
+
+        .stat {
+            padding: 26px 22px
+        }
+
+        .stat b {
+            display: block;
+            font: 700 clamp(2rem, 4vw, 3rem)/1 var(--d);
+            letter-spacing: -.03em;
+            color: var(--ink)
+        }
+
+        .stat b i {
+            font-style: normal;
+            color: var(--accent)
+        }
+
+        .stat span {
+            display: block;
+            margin-top: 10px;
+            font-weight: 600;
+            font-size: .95rem
+        }
+
+        .stat small {
+            display: block;
+            margin-top: 4px;
+            color: var(--mute);
+            font-size: .78rem;
+            line-height: 1.45
+        }
+
+        /* ===== skills ===== */
+        .skgrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px
+        }
+
+        .sk {
+            padding: 24px
+        }
+
+        .sk h3 {
+            font: 600 1.1rem var(--d);
+            margin-bottom: 14px
+        }
+
+        .sk .chips {
+            margin-top: 0
+        }
+
+        /* ===== experience timeline ===== */
+        .xg {
+            position: relative;
+            display: grid;
+            gap: 22px;
+            padding-left: 30px
+        }
+
+        .xg::before {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--line)
+        }
+
+        .xp {
+            padding: 26px 28px
+        }
+
+        .xp::before {
+            content: "";
+            position: absolute;
+            left: -30px;
+            top: 30px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 5px rgba(134, 174, 224, .2)
+        }
+
+        .xh {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: baseline
+        }
+
+        .xh h3 {
+            font: 700 1.3rem var(--d);
+            letter-spacing: -.02em
+        }
+
+        .xh .org {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: .92rem
+        }
+
+        .xh .per {
+            font: 500 .82rem var(--m);
+            color: var(--mute)
+        }
+
+        .xp ul {
+            margin: 14px 0 16px 18px;
+            color: var(--mute)
+        }
+
+        .xp li {
+            margin-bottom: 6px
+        }
+
+        .xp .tags {
+            margin-bottom: 0
+        }
+
+        /* ===== certificates ===== */
+        .cgrid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px
+        }
+
+        .cert {
+            padding: 14px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .cert .cim {
+            aspect-ratio: 4/3;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(134, 174, 224, .12);
+            margin-bottom: 14px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line)
+        }
+
+        .cert .cim img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .cert .cim svg {
+            width: 44px;
+            height: 44px;
+            color: var(--accent);
+            opacity: .8
+        }
+
+        .cert h3 {
+            font: 600 1.05rem var(--d);
+            margin: 0 4px 4px
+        }
+
+        .cert p {
+            color: var(--mute);
+            font-size: .88rem;
+            margin: 0 4px 12px
+        }
+
+        .cert .btn {
+            margin: auto 4px 4px;
+            align-self: flex-start;
+            padding: 9px 20px;
+            font-size: .85rem
+        }
+
+        /* ===== clients & testimonials ===== */
+        .clg {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px
+        }
+
+        .cl {
+            padding: 26px;
+            margin: 0;
+            display: flex;
+            flex-direction: column
+        }
+
+        .cl .cw {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px
+        }
+
+        .cl .ini {
+            flex: none;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font: 700 1rem var(--d);
+            color: var(--ink);
+            border: 1px solid var(--line);
+            background: linear-gradient(145deg, rgba(134, 174, 224, .35), rgba(47, 95, 153, .25))
+        }
+
+        .cl .cw b {
+            display: block;
+            font: 600 1.05rem/1.25 var(--d)
+        }
+
+        .cl .cw span {
+            font-size: .85rem;
+            color: var(--mute)
+        }
+
+        .cl blockquote {
+            margin: 0;
+            padding-left: 14px;
+            border-left: 2px solid var(--accent);
+            color: var(--ink);
+            font-size: .98rem;
+            line-height: 1.65
+        }
+
+        /* ===== project popup extras ===== */
+        .lbin .tl {
+            font: 700 .78rem var(--b);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px
+        }
+
+        .lbin .outc {
+            color: var(--ink);
+            max-width: 62ch
+        }
+
+        .lbin .outc b {
+            color: var(--accent);
+            margin-right: 6px
+        }
+
+        .lbin .chips {
+            margin: 0 0 22px
+        }
+
+        @media(max-width:1000px) {
+
+            .skgrid,
+            .cgrid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:860px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .skgrid,
+            .cgrid,
+            .clg {
+                grid-template-columns: 1fr
+            }
+
+            .xp {
+                padding: 22px
+            }
+
+            nav ul {
+                gap: 0
+            }
+        }
+
+        .phold {
+            display: grid;
+            place-items: center;
+            background: linear-gradient(145deg, rgba(134, 174, 224, .35), rgba(47, 95, 153, .25));
+            font: 700 1.1rem var(--d);
+            color: var(--ink);
+            text-align: center
+        }
+
+        .portrait .phold {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 14px;
+            font-size: 3.4rem
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .wave {
+                animation: none
+            }
+        }
+
+        /* ===== performance ===== */
+        html {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-text-size-adjust: 100%
+        }
+
+        .glass {
+            backdrop-filter: blur(14px) saturate(140%);
+            -webkit-backdrop-filter: blur(14px) saturate(140%)
+        }
+
+        .glass::after {
+            display: none
+        }
+
+        .cap {
+            display: none
+        }
+
+        @supports (height: 100svh) {
+            #hero {
+                min-height: 100svh
+            }
+        }
+
+        /* ===== phones: a different layout, not just a squeezed desktop ===== */
+        @media(max-width:860px) {
+            #hero {
+                min-height: auto;
+                padding: 92px 20px 24px;
+                gap: 8px
+            }
+
+            .scene {
+                height: 260px
+            }
+
+            section {
+                padding: 64px 0
+            }
+
+            .head {
+                padding: 64px 20px 6px
+            }
+
+            .stage {
+                display: block;
+                position: static;
+                height: auto;
+                padding: 0;
+                overflow: visible
+            }
+
+            .info {
+                display: none
+            }
+
+            .depth {
+                height: auto;
+                perspective: none;
+                display: flex;
+                gap: 14px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                padding: 8px 20px 24px;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch
+            }
+
+            .depth::-webkit-scrollbar {
+                display: none
+            }
+
+            .fr {
+                position: relative;
+                left: auto;
+                top: auto;
+                margin: 0;
+                flex: 0 0 82%;
+                width: auto;
+                aspect-ratio: auto;
+                scroll-snap-align: center;
+                display: block;
+                text-align: left;
+                border-radius: 18px
+            }
+
+            .fr img {
+                height: auto;
+                aspect-ratio: 16/10
+            }
+
+            .fr.ph0 {
+                display: block
+            }
+
+            .fr.ph0::before {
+                display: grid;
+                place-items: center;
+                aspect-ratio: 16/10;
+                padding: 0
+            }
+
+            .fr .cap {
+                display: block;
+                padding: 14px 16px 16px;
+                font-style: normal
+            }
+
+            .fr .cap b {
+                display: block;
+                font: 600 1.05rem var(--d)
+            }
+
+            .fr .cap span {
+                font-size: .8rem;
+                color: var(--mute)
+            }
+        }
+
+        @media(max-width:480px) {
+            .wrap {
+                padding: 0 18px
+            }
+
+            h1 {
+                font-size: clamp(2.1rem, 10.5vw, 2.6rem)
+            }
+
+            h2 {
+                font-size: clamp(1.75rem, 8vw, 2.2rem)
+            }
+
+            .lead {
+                font-size: 1rem;
+                margin: 20px 0 26px
+            }
+
+            .row .btn {
+                flex: 1 1 100%;
+                justify-content: center
+            }
+
+            .stats {
+                gap: 10px
+            }
+
+            .stat {
+                padding: 18px 16px
+            }
+
+            .ph {
+                height: 300px
+            }
+
+            .contact {
+                padding: 22px;
+                gap: 28px
+            }
+
+            .xg {
+                padding-left: 24px
+            }
+
+            .xp {
+                padding: 20px
+            }
+
+            .xp::before {
+                left: -24px
+            }
+
+            .xh h3 {
+                font-size: 1.15rem
+            }
+
+            .lbin h3 {
+                font-size: 1.5rem
+            }
+
+            #lb {
+                padding: 68px 16px 32px
+            }
+
+            .logo {
+                font-size: 1.05rem
+            }
+
+            .tg {
+                width: 38px;
+                height: 38px
+            }
+
+            footer .wrap {
+                flex-direction: column
+            }
+        }
+
+        @media(max-width:360px) {
+            .stats {
+                grid-template-columns: 1fr
+            }
+        }
     </style>
+    <script>
+        /* day/night before first paint: the visitor's own saved choice, else daytime = light, evening = dark */
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem('theme') } catch (e) { }
+            if (t !== 'light' && t !== 'dark') { var hr = new Date().getHours(); t = hr >= 6 && hr < 18 ? 'light' : 'dark' }
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
 </head>
 
 <body>
     <canvas id="dust" aria-hidden="true"></canvas>
-    <canvas id="glow" aria-hidden="true"></canvas>
-    <div id="cring" aria-hidden="true"></div>
-    <div id="cdot" aria-hidden="true"></div>
+    <div id="cur" aria-hidden="true"><span></span></div>
     <div id="prog"></div>
 
     <header>
@@ -1129,23 +1823,40 @@
                 <ul id="nl">
                     <li><a href="#work">Work</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li id="nc" hidden><a href="#certs">Certificates</a></li>
+                    <li><a href="#clients">Clients</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <a class="btn main hide-m" href="#contact">Start a project</a><button class="menu" id="mb"
-                aria-expanded="false">Menu</button>
+            <div class="ra"><button class="tg" id="tg" type="button" aria-label="Switch to light mode"
+                    title="Switch day / night">
+                    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4.2" />
+                        <path
+                            d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7" />
+                    </svg>
+                    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M20 14.5A8.5 8.5 0 119.5 4a7 7 0 0010.5 10.5z" />
+                    </svg>
+                </button><a class="btn main hide-m" href="#contact">Start a project</a><button class="menu" id="mb"
+                    aria-expanded="false">Menu</button></div>
         </div>
     </header>
     <main>
         <div id="hero">
             <div>
-                <div class="who up" style="--i:0"><img class="av" src="images/linkdeln-img.jpeg"
-                        alt="Felix Olajide" onerror="ie(this)">
-                    <div><b>Felix Olajide</b><span>Fullstack &amp; mobile app developer</span></div>
+                <div class="who up" style="--i:0"><img class="av" src="images/linkdeln-img.jpeg" alt="Felix Olajide"
+                        onerror="ie(this)">
+                    <div><b>Hi, I’m Felix <span class="wave" aria-hidden="true">👋</span></b><span>Fullstack &amp;
+                            mobile app developer</span></div>
                 </div>
                 <h1 class="up" style="--i:1">I build digital products with <span>depth.</span></h1>
-                <p class="lead up" style="--i:2">Fullstack and mobile app developer. I turn briefs into sites and apps
-                    that look credible, feel smooth and work on every screen.</p>
+                <p class="lead up" style="--i:2">Fullstack and mobile app developer with 5+ years of experience and 30+
+                    projects delivered. I turn briefs into sites and apps that look credible, feel smooth and work on
+                    every screen.</p>
                 <div class="row up" style="--i:3"><a class="btn main" href="#work">Explore my work</a><a class="btn"
                         href="#contact">Get in touch</a></div>
             </div>
@@ -1153,6 +1864,9 @@
                 <div class="stack" id="stack"></div>
             </div>
         </div>
+        <section id="stats" aria-label="Numbers">
+            <div class="wrap stats rv" id="stg"></div>
+        </section>
         <section id="about">
             <div class="wrap about rv">
                 <figure class="glass portrait"><img src="images/linkdeln-img.jpeg" alt="Felix Olajide"
@@ -1187,7 +1901,8 @@
         <section id="work">
             <div class="head">
                 <h2>Selected work</h2>
-                <p class="sub" style="margin:0">Scroll to move through each project. Click one to see every screen.</p>
+                <p class="sub" style="margin:0">Scroll to explore each project. Tap or click one to see every screen.
+                </p>
             </div>
             <div class="track" id="track">
                 <div class="stage">
@@ -1215,11 +1930,35 @@
         </section>
         <section id="skills" style="padding-top:40px">
             <div class="wrap">
-                <h2 class="rv">Tools I work with</h2>
-                <p class="sub rv">Design, build and ship.</p>
-                <div class="skills rv" id="sg"></div>
+                <h2 class="rv">Skills and tools</h2>
+                <p class="sub rv">What I design, build and ship with, grouped by what it is used for.</p>
+                <div class="skgrid" id="sg"></div>
             </div>
         </section>
+        <section id="experience">
+            <div class="wrap">
+                <h2 class="rv">Experience</h2>
+                <p class="sub rv">Where I have worked and what I delivered.</p>
+                <div class="xg" id="xg"></div>
+            </div>
+        </section>
+
+        <section id="certs" hidden>
+            <div class="wrap">
+                <h2 class="rv">Certificates</h2>
+                <p class="sub rv">Courses and certifications I have completed.</p>
+                <div class="cgrid" id="cgd"></div>
+            </div>
+        </section>
+
+        <section id="clients">
+            <div class="wrap">
+                <h2 class="rv">Clients and testimonials</h2>
+                <p class="sub rv">Founders and owners I have built for, and what they said about the work.</p>
+                <div class="clg" id="clg"></div>
+            </div>
+        </section>
+
         <section id="contact">
             <div class="wrap">
                 <div class="glass contact rv">
@@ -1283,6 +2022,8 @@
     <script>
         const I = 'images/', $ = id => document.getElementById(id);
         // HOW IMAGES WORK: every project has its own folder, images/<dir>/ . "th" is the cover image, "s" are the other screens (file names without .png).
+        // FULL TOOLS PER PROJECT: add  tools: ['React', 'Tailwind CSS', ...]  to a project to list everything used on it (it shows in the project popup).
+        // RESULT PER PROJECT: add  o: 'what the project achieved'  to show a Result line in the popup.
         // ADD A PROJECT: copy a block, set dir (folder name), put its screenshots in that folder, and list their names. "url" adds a Visit live site button.
         const P = [
             { dir: 'crossborder', t: 'Crossborder Marketing', d: 'International digital marketing agency site with campaign-led visuals and lead generation pages.', g: ['HTML', 'CSS', 'JavaScript'], th: 'cbm-01', s: ['cbm-02', 'cbm-03', 'cbm-04', 'cbm-05', 'cbm-06', 'cbm-07'] },
@@ -1292,16 +2033,72 @@
             { dir: 'hrm-playhouse', t: 'HRM Playhouse', d: 'Master’s-level research platform at Covenant University with an interactive interface and academic content management.', g: ['React', 'TypeScript'], th: 'hr-01', s: ['hr-02', 'hr-03', 'hr-04', 'hr-05', 'hr-06', 'hr-07'] },
             { dir: 'e-invitation', t: 'Wedding E-Invitation', d: 'Elegant e-invitation with event details for guests and RSVP built in.', g: ['React', 'Tailwind CSS'], th: 'e-01', s: ['e-02', 'e-03', 'e-04', 'e-05', 'e-06', 'e-07'] },
             // NEW PROJECTS: add cover.png, 1.png, 2.png ... to each folder, then edit the description and tags below.
-            { dir: 'kadis-digitals', url: 'https://kadisdigitals.com', t: 'Kadis Digitals', d: 'Company website for Kadis Digitals.', g: ['Web design', 'Development'], th: 'cover', s: ['1', '2', '3', '4'] },
+            { dir: 'kadis-digitals', url: 'https://kadisdigitals.com', t: 'Kadis Digitals', d: 'Company website for Kadis Digitals.', o: 'Found on Google within weeks of launch: 1.4K search impressions and 200+ clicks to the site’s pages.', g: ['Web design', 'Development'], th: 'cover', s: ['1', '2', '3', '4'] },
             { dir: 'kadis-event-media', url: 'https://eventmedia.kadisdigitals.com', t: 'Kadis Event Media', d: 'Event media website on the Kadis Digitals platform.', g: ['Web design', 'Development'], th: 'cover', s: ['1', '2', '3', '4'] },
             { dir: 'kamieo-kreations', url: 'https://kamieokreations.com', t: 'Kamieo Kreations', d: 'Brand website for Kamieo Kreations.', g: ['Web design', 'Development'], th: 'cover', s: ['1', '2', '3', '4'] }
         ];
         const A = [{ t: 'Clapmi', d: 'Livestreaming where viewers take part in live competitions and shared rewards. Collaboration.', i: 'app-img-01' }, { t: 'JKL', d: 'Afterschool program management: attendance, schedules and reports in one place. Collaboration.', i: 'app-img-02' }, { t: 'Signal Wallet', d: 'Personal project that tracks signals and market changes in crypto.', i: 'app-img-06' }];
-        const S = ['React', 'TypeScript', 'JavaScript', 'Node.js', 'Flutter', 'Tailwind CSS', 'WordPress', 'Figma'];
-        const img = (d, n, a) => `<img src="${I}${n}.png" alt="${a}" loading="lazy" onerror="ie(this)">`;
+        /* ================= EDIT YOUR CONTENT HERE ================= */
+        // numbers strip. n = number, dec = decimals, suf = text after the number, l = label, x = small note under it
+        const STATS = [
+            { n: 5, suf: '+', l: 'Years of experience' },
+            { n: 30, suf: '+', l: 'Projects delivered' },
+            { n: 1.4, dec: 1, suf: 'K', l: 'Google impressions', x: 'Kadis Digitals site, within its first few weeks' },
+            { n: 200, suf: '+', l: 'Clicks from Google', x: 'Same site, same period, pages ranking in search' }
+        ];
+        // skills, grouped. Add or remove names freely.
+        const SK = [
+            { g: 'Frontend', i: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS'] },
+            { g: 'Backend', i: ['Node.js'] },
+            { g: 'Mobile apps', i: ['Flutter'] },
+            { g: 'CMS', i: ['WordPress'] },
+            { g: 'Design', i: ['Figma', 'Design to code'] },
+            { g: 'Workflow and hosting', i: ['GitHub', 'Vercel'] }
+        ];
+        // experience. Copy a block to add a job. per = period, pts = bullet points, tags = tools used
+        const EXP = [
+            {
+                role: 'Web Developer', org: 'Crossborder Marketing', per: '',
+                pts: ['Built the agency platform, which passed 1,000+ clicks.',
+                    'The team used the site to land about 10% more business on a normal day.',
+                    'Set up Meta Pixel and Google Analytics to track campaigns and visitor behaviour.'],
+                tags: ['HTML', 'CSS', 'JavaScript', 'Meta Pixel', 'Google Analytics']
+            },
+            {
+                role: 'Fullstack Developer', org: 'Kadis Digitals', per: '',
+                pts: ['Built and launched the company platform as the fullstack developer.',
+                    'Optimised it properly for search: 1.4K Google impressions and 200+ clicks within a few weeks of going live.'],
+                tags: ['Web design', 'Development', 'SEO']
+            },
+            {
+                role: 'Fullstack Developer', org: 'HRM Playhouse Hub', per: '',
+                pts: ['Built the platform that onboarded 500+ HR managers.',
+                    'Members get certified on it and learn how the hub works.'],
+                tags: ['React', 'TypeScript']
+            },
+            {
+                role: 'Fullstack and Mobile App Developer', org: 'Freelance', per: '5+ years',
+                pts: ['30+ websites, platforms and apps delivered across marketing, property, music, architecture, education and fashion.',
+                    'Websites in React and TypeScript, mobile apps in Flutter, from Figma design to launch.'],
+                tags: ['React', 'TypeScript', 'Flutter', 'Node.js', 'Figma']
+            }
+        ];
+        // certificates. Leave the list empty and the section stays hidden. Copy this to add one:
+        // { t: 'Certificate name', by: 'Issued by', yr: '2025', img: 'images/cert-name.png', url: 'https://link-to-verify' }   (img and url are optional)
+        const CERTS = [];
+        // clients. n = name, r = role, q = what they said (placeholder quotes: replace with their real words)
+        const CL = [
+            { n: 'Mr. Kayode Agbalun Eze', r: 'CEO, Kadis Digitals', q: 'Felix delivered a clean, fast website and made sure it was properly optimised. We were showing up on Google within weeks.' },
+            { n: 'Candorra Asset Development', r: 'Owner', q: 'The platform looks premium and works smoothly for our clients. Great communication from start to finish.' },
+            { n: 'Dr. Gberieve', r: 'Founder, HRM Playhouse Hub', q: 'Felix understood exactly what we needed. The platform is easy to use and our HR managers love it.' },
+            { n: 'Mr. Ikenna', r: 'Owner, Kamieo Kreations', q: 'You did a great job. The website looks very nice and represents the brand well.' }
+        ];
+        /* ========================================================== */
+        const img = (d, n, a) => `<img src="${I}${n}.png" alt="${a}" loading="lazy" decoding="async" onerror="ie(this)">`;
         // if a file is not found under images/, try images/ once (for hosts that serve from the public folder); then hide it or show a labelled placeholder
-        function ie(i) { const u = i.getAttribute('src'); if (!i.dataset.f) { i.dataset.f = 1; i.src = u.indexOf('images/') === 0 ? u.slice(7) : 'public/' + u; return } i.style.display = 'none'; const f = i.closest('.fr'); if (f) f.classList.add('ph0') }
+        function ie(i) { const u = i.getAttribute('src'); if (!i.dataset.f) { i.dataset.f = 1; i.src = u.indexOf('images/') === 0 ? u.slice(7) : 'public/' + u; return } if (i.classList.contains('av') || i.closest('.portrait')) { const d = document.createElement('div'); d.className = i.className + ' phold'; d.textContent = 'FO'; i.replaceWith(d); return } i.style.display = 'none'; const f = i.closest('.fr'); if (f) f.classList.add('ph0') }
         const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+        const TONE = () => document.documentElement.dataset.theme === 'light' ? '47,95,153' : '165,205,250';
         // hero stack
         const st = $('stack');
         st.innerHTML = P.slice(0, 5).map((p, i) => `<div class="pane" style="transform:translate3d(${i * 46 - 90}px,${i * -26 + 40}px,${i * -110 + 100}px) rotateY(-22deg) rotateX(6deg);animation-delay:${i * -1.4}s">${img(p.dir, p.th, p.t)}</div>`).join('');
@@ -1309,11 +2106,13 @@
         $('scene').addEventListener('pointermove', e => { const r = e.currentTarget.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5; if (!reduce) st.style.transform = `rotateY(${mx * 10}deg) rotateX(${-my * 8}deg)` });
         $('scene').addEventListener('pointerleave', () => st.style.transform = '');
         // depth gallery
-        const dp = $('depth'), tk = $('track'); tk.style.height = (P.length * 85 + 15) + 'vh';
-        dp.innerHTML = P.map((p, i) => `<button class="fr" data-i="${i}" data-t="${p.t}" aria-label="Open ${p.t}">${img(p.dir, p.th, p.t)}</button>`).join('');
+        const mob = matchMedia('(max-width:860px)'), dp = $('depth'), tk = $('track'); tk.style.height = (P.length * 85 + 15) + 'vh';
+        dp.innerHTML = P.map((p, i) => `<button class="fr" data-i="${i}" data-t="${p.t}" aria-label="Open ${p.t}">${img(p.dir, p.th, p.t)}<em class="cap"><b>${p.t}</b><span>${p.g.slice(0, 3).join(" · ")}</span></em></button>`).join('');
         const fr = [...dp.children]; let cur = -1;
         function show(i) { if (i === cur) return; cur = i; const p = P[i]; $('it').textContent = p.t; $('id').textContent = p.d; $('ig').innerHTML = p.g.map(x => `<span>${x}</span>`).join(''); $('ic').textContent = (i + 1) + ' / ' + P.length; const v = $('iv'); if (p.url) { v.href = p.url; v.hidden = false } else v.hidden = true }
         function tick() {
+            if (mob.matches !== !!tick.m) { tick.m = mob.matches; tk.style.height = tick.m ? "auto" : (P.length * 85 + 15) + "vh"; if (tick.m) fr.forEach(f => f.style.cssText = "") }
+            if (tick.m) return;
             const r = tk.getBoundingClientRect(), vh = innerHeight, tot = r.height - vh, p = Math.max(0, Math.min(1, -r.top / tot)) * (P.length - 1);
             fr.forEach((f, i) => {
                 const d = i - p; let z = -d * 520, x = d * 70, y = d * -34, o = 1, ry = -14;
@@ -1323,10 +2122,10 @@
             });
             show(Math.round(p)); $('pb').style.width = (p / (P.length - 1) * 100) + '%'
         }
-        addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true }); addEventListener('resize', tick); tick();
+        let tq = 0; addEventListener('scroll', () => { if (!tq) tq = requestAnimationFrame(() => { tq = 0; tick() }) }, { passive: true }); addEventListener('resize', tick); tick();
         // lightbox
         const lb = $('lb');
-        function open(i) { const p = P[i]; $('lbin').innerHTML = `<h3>${p.t}</h3><p>${p.d}</p>` + (p.url ? `<p><a class="btn main" href="${p.url}" target="_blank" rel="noopener">Visit live site</a></p>` : '') + p.s.map(s => img(p.dir, s, p.t + ' screen')).join(''); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.scrollTop = 0; $('x').focus() }
+        function open(i) { const p = P[i]; $('lbin').innerHTML = `<h3>${p.t}</h3><p>${p.d}</p>` + (p.o ? `<p class="outc"><b>Result</b>${p.o}</p>` : '') + `<p class="tl">Tools &amp; technologies</p><div class="chips">${(p.tools || p.g).map(x => `<span class="chip">${x}</span>`).join('')}</div>` + (p.url ? `<p><a class="btn main" href="${p.url}" target="_blank" rel="noopener">Visit live site</a></p>` : '') + p.s.map(s => img(p.dir, s, p.t + ' screen')).join(''); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.scrollTop = 0; $('x').focus() }
         dp.addEventListener('click', e => { const f = e.target.closest('.fr'); if (f) open(f.dataset.i) });
         $('ib').onclick = () => open(Math.max(0, cur));
         const close = () => { lb.classList.remove('open'); document.body.style.overflow = '' };
@@ -1334,40 +2133,53 @@
         // apps, skills
         $('ag').innerHTML = A.map(a => `<div class="glass app rv"><div class="ph">${img('mobile-apps', a.i, a.t + ' app')}</div><h3>${a.t}</h3><p>${a.d}</p></div>`).join('');
         document.querySelectorAll('.app').forEach(c => { c.addEventListener('pointermove', e => { if (reduce) return; const r = c.getBoundingClientRect(); c.style.transform = `rotateY(${((e.clientX - r.left) / r.width - .5) * 10}deg) rotateX(${-((e.clientY - r.top) / r.height - .5) * 8}deg)` }); c.addEventListener('pointerleave', () => c.style.transform = '') });
-        $('sg').innerHTML = S.map(s => `<div class="glass">${s}</div>`).join('');
+        $('sg').innerHTML = SK.map(k => `<div class="glass sk rv"><h3>${k.g}</h3><div class="chips">${k.i.map(x => `<span class="chip">${x}</span>`).join('')}</div></div>`).join('');
+        // numbers: render the final values, then count up the first time they scroll into view
+        const fmt = (s, v) => (s.dec ? v.toFixed(s.dec) : Math.round(v)) + '';
+        $('stg').innerHTML = STATS.map((s, i) => `<div class="glass stat" data-i="${i}"><b><em>${fmt(s, s.n)}</em><i>${s.suf || ''}</i></b><span>${s.l}</span>${s.x ? `<small>${s.x}</small>` : ''}</div>`).join('');
+        const so = new IntersectionObserver(es => es.forEach(e => {
+            if (!e.isIntersecting) return; so.unobserve(e.target);
+            if (reduce) return;
+            const s = STATS[e.target.dataset.i], el = e.target.querySelector('em'), t0 = performance.now();
+            (function step(t) { const k = Math.min(1, (t - t0) / 1300), v = s.n * (1 - Math.pow(1 - k, 3)); el.textContent = fmt(s, v); if (k < 1) requestAnimationFrame(step) })(t0);
+        }), { threshold: .5 });
+        document.querySelectorAll('.stat').forEach(el => so.observe(el));
+        // experience
+        $('xg').innerHTML = EXP.map(e => `<div class="glass xp rv"><div class="xh"><div><h3>${e.role}</h3><span class="org">${e.org}</span></div><span class="per">${e.per}</span></div><ul>${e.pts.map(t => `<li>${t}</li>`).join('')}</ul><div class="tags">${(e.tags || []).map(t => `<span>${t}</span>`).join('')}</div></div>`).join('');
+        // certificates (section stays hidden until you add one)
+        if (CERTS.length) {
+            $('certs').hidden = false; $('nc').hidden = false;
+            $('cgd').innerHTML = CERTS.map((c, i) => `<div class="glass cert rv"><div class="cim">${c.img ? `<img src="${c.img}" alt="${c.t}" loading="lazy">` : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.8 13.6L7.5 21l4.5-2.5 4.5 2.5-1.3-7.4"/></svg>'}</div><h3>${c.t}</h3><p>${c.by || ''}${c.yr ? ' · ' + c.yr : ''}</p>${c.img || c.url ? `<button class="btn" data-c="${i}" type="button">View certificate</button>` : ''}</div>`).join('');
+            $('cgd').addEventListener('click', e => {
+                const b = e.target.closest('button[data-c]'); if (!b) return; const c = CERTS[b.dataset.c];
+                if (c.img) { $('lbin').innerHTML = `<h3>${c.t}</h3><p>${c.by || ''}${c.yr ? ' · ' + c.yr : ''}</p><img src="${c.img}" alt="${c.t}">` + (c.url ? `<p><a class="btn main" href="${c.url}" target="_blank" rel="noopener">Verify online</a></p>` : ''); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.scrollTop = 0; $('x').focus() }
+                else if (c.url) window.open(c.url, '_blank', 'noopener')
+            });
+        }
+        // clients and testimonials
+        $('clg').innerHTML = CL.map(c => { const ini = c.n.replace(/^(Mr|Mrs|Ms|Dr|Prof)\.?\s+/i, '').split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase(); return `<figure class="glass cl rv"><div class="cw"><span class="ini">${ini}</span><div><b>${c.n}</b><span>${c.r}</span></div></div><blockquote>“${c.q}”</blockquote></figure>` }).join('');
+        // day / night switch
+        (() => {
+            const r = document.documentElement, b = $('tg');
+            const sync = () => { const l = r.dataset.theme === 'light'; b.setAttribute('aria-label', l ? 'Switch to dark mode' : 'Switch to light mode'); b.title = l ? 'Switch to night mode' : 'Switch to day mode' };
+            sync(); b.addEventListener('click', () => { const t = r.dataset.theme === 'light' ? 'dark' : 'light'; r.dataset.theme = t; try { localStorage.setItem('theme', t) } catch (e) { } sync() })
+        })();
         // progress line
         const pg = $('prog'); addEventListener('scroll', () => { const m = document.documentElement.scrollHeight - innerHeight; pg.style.transform = 'scaleX(' + (m > 0 ? scrollY / m : 0) + ')' }, { passive: true });
-        // living field: dots drift and breathe on their own, scatter from the pointer, link to it, and shift as you scroll.
+        // background: a few soft specks rising slowly. No connecting lines, no pointer interaction.
         (() => {
-            const c = $('dust'), x = c.getContext('2d'), coarse = !matchMedia('(hover:hover) and (pointer:fine)').matches;
-            let w, h, pts = [], mx = -999, my = -999, sv = 0, ly = scrollY, dpr = Math.min(devicePixelRatio || 1, 2);
+            const c = $('dust'), x = c.getContext('2d'); if (matchMedia('(hover:none)').matches) { c.remove(); return } let w, h, pts = [], dpr = Math.min(devicePixelRatio || 1, 2);
             function init() {
                 w = innerWidth; h = innerHeight; c.width = w * dpr; c.height = h * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0);
-                const n = Math.min(coarse ? 42 : 105, Math.floor(w * h / 14000));
-                pts = Array.from({ length: n }, () => { const hx = Math.random() * w, hy = Math.random() * h; return { hx, hy, x: hx, y: hy, vx: 0, vy: 0, ph: Math.random() * 6.28, r: .8 + Math.random() * 1.4, near: 0 } })
+                pts = Array.from({ length: Math.min(38, Math.floor(w * h / 30000)) }, () => ({ x: Math.random() * w, y: Math.random() * h, r: .6 + Math.random() * 1.1, s: .04 + Math.random() * .08, ph: Math.random() * 6.28 }))
             }
             init(); addEventListener('resize', init);
-            addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY }, { passive: true });
-            document.addEventListener('pointerleave', () => { mx = -999; my = -999 });
-            addEventListener('scroll', () => { sv += (scrollY - ly) * .45; ly = scrollY }, { passive: true });
             function frame(t) {
-                x.clearRect(0, 0, w, h); sv *= .9;
+                x.clearRect(0, 0, w, h);
                 for (const p of pts) {
-                    const bx = p.hx + Math.sin(t / 2600 + p.ph) * 16, by = p.hy + Math.cos(t / 3100 + p.ph * 1.3) * 16;
-                    p.vx += (bx - p.x) * .012; p.vy += (by - p.y) * .012 - sv * .012 * p.r;
-                    const dx = p.x - mx, dy = p.y - my, d = Math.hypot(dx, dy); p.near = 0;
-                    if (d < 160) { const f = 1 - d / 160; p.vx += dx / (d || 1) * f * 1.3; p.vy += dy / (d || 1) * f * 1.3; p.near = f }
-                    p.vx *= .9; p.vy *= .9; p.x += p.vx; p.y += p.vy
-                }
-                for (let i = 0; i < pts.length; i++) {
-                    const p = pts[i];
-                    for (let j = i + 1; j < pts.length; j++) {
-                        const q = pts[j], d = Math.hypot(p.x - q.x, p.y - q.y);
-                        if (d < 125) { x.strokeStyle = 'rgba(150,195,245,' + (1 - d / 125) * .2 + ')'; x.lineWidth = .8; x.beginPath(); x.moveTo(p.x, p.y); x.lineTo(q.x, q.y); x.stroke() }
-                    }
-                    const dm = Math.hypot(p.x - mx, p.y - my);
-                    if (dm < 190) { x.strokeStyle = 'rgba(185,215,250,' + (1 - dm / 190) * .5 + ')'; x.lineWidth = .9; x.beginPath(); x.moveTo(p.x, p.y); x.lineTo(mx, my); x.stroke() }
-                    x.fillStyle = 'rgba(175,210,250,' + (.45 + p.near * .5) + ')'; x.beginPath(); x.arc(p.x, p.y, p.r + p.near * 1.4, 0, 6.283); x.fill()
+                    p.y -= p.s; if (p.y < -4) { p.y = h + 4; p.x = Math.random() * w }
+                    x.fillStyle = 'rgba(' + TONE() + ',' + (.12 + .18 * (.5 + .5 * Math.sin(t / 2200 + p.ph))) + ')';
+                    x.beginPath(); x.arc(p.x + Math.sin(t / 4000 + p.ph) * 8, p.y, p.r, 0, 6.283); x.fill()
                 }
                 requestAnimationFrame(frame)
             }
@@ -1375,34 +2187,28 @@
         })();
         // hero drifts slower than the page
         addEventListener('scroll', () => { const y = Math.min(scrollY, 900); $('scene').style.transform = 'translateY(' + y * .14 + 'px)' }, { passive: true });
-        // comet-glow cursor: hides the arrow, shows a dot + ring, and smears a soft blue light behind the pointer.
+        // cursor: one small point that eases after the mouse and opens into a labelled lens over projects and links.
         (() => {
             if (reduce || !matchMedia('(hover:hover) and (pointer:fine)').matches) return;
             document.documentElement.classList.add('fine');
-            const c = $('glow'), x = c.getContext('2d'), dot = $('cdot'), ring = $('cring'), H = [];
-            let w, h, mx = -100, my = -100, hx = -100, hy = -100, rx = -100, ry = -100, seen = false, last = 0, run = false, vis = 0, dpr = Math.min(devicePixelRatio || 1, 2);
-            const fit = () => { w = innerWidth; h = innerHeight; c.width = w * dpr; c.height = h * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0) }; fit(); addEventListener('resize', fit);
+            const el = $('cur'), tx = el.querySelector('span');
+            let x = -100, y = -100, cx = -100, cy = -100, on = false, run = false, mode = '';
+            function setMode(t) {
+                let m = '', l = '';
+                if (t.closest) { if (t.closest('.fr')) { m = 'view'; l = 'View' } else if (t.closest('a,button,input,textarea')) m = 'link' }
+                if (m !== mode) { mode = m; el.className = m; tx.textContent = l }
+            }
             addEventListener('pointermove', e => {
-                if (e.pointerType !== 'mouse') return; mx = e.clientX; my = e.clientY; last = performance.now();
-                dot.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
-                if (!seen) { seen = true; hx = rx = mx; hy = ry = my } dot.style.opacity = ring.style.opacity = 1;
-                ring.classList.toggle('hov', !!(e.target.closest && e.target.closest('a,button,.fr,input,textarea')));
-                if (!run) { run = true; requestAnimationFrame(loop) }
+                if (e.pointerType !== 'mouse') return; x = e.clientX; y = e.clientY;
+                if (!on) { on = true; cx = x; cy = y; el.style.opacity = 1 }
+                setMode(e.target); if (!run) { run = true; requestAnimationFrame(loop) }
             }, { passive: true });
-            document.documentElement.addEventListener('mouseleave', () => { dot.style.opacity = ring.style.opacity = 0 });
-            function loop(t) {
-                const idle = t - last > 2600; vis += ((idle ? 0 : 1) - vis) * .05;
-                hx += (mx - hx) * .22; hy += (my - hy) * .22; rx += (mx - rx) * .38; ry += (my - ry) * .38;
-                ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
-                H.push({ x: hx, y: hy }); if (H.length > 30) H.shift(); if (idle && H.length > 1) H.shift();
-                x.clearRect(0, 0, w, h); x.globalCompositeOperation = 'lighter';
-                for (let i = 0; i < H.length; i++) {
-                    const k = (i + 1) / H.length, p = H[i], r = 10 + k * k * 46, a = k * k * .3 * vis;
-                    const g = x.createRadialGradient(p.x, p.y, 0, p.x, p.y, r); g.addColorStop(0, 'rgba(120,175,245,' + a + ')'); g.addColorStop(.5, 'rgba(80,135,215,' + a * .45 + ')'); g.addColorStop(1, 'rgba(60,110,190,0)');
-                    x.fillStyle = g; x.beginPath(); x.arc(p.x, p.y, r, 0, 6.283); x.fill()
-                }
-                x.globalCompositeOperation = 'source-over';
-                if (idle && vis < .01 && Math.abs(mx - rx) < .3) { x.clearRect(0, 0, w, h); run = false; return } requestAnimationFrame(loop)
+            document.documentElement.addEventListener('mouseleave', () => { on = false; el.style.opacity = 0 });
+            function loop() {
+                cx += (x - cx) * .28; cy += (y - cy) * .28;
+                el.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+                if (Math.abs(x - cx) < .1 && Math.abs(y - cy) < .1) { run = false; return }
+                requestAnimationFrame(loop)
             }
         })();
         // nav + reveal
