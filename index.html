@@ -1800,6 +1800,16 @@
                 grid-template-columns: 1fr
             }
         }
+
+        [hidden] {
+            display: none !important
+        }
+
+        @media(min-width:861px) {
+            .stats {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
     </style>
     <script>
         /* day/night before first paint: the visitor's own saved choice, else daytime = light, evening = dark */
@@ -1848,15 +1858,9 @@
     <main>
         <div id="hero">
             <div>
-                <div class="who up" style="--i:0"><img class="av" src="images/linkdeln-img.jpeg" alt="Felix Olajide"
-                        onerror="ie(this)">
-                    <div><b>Hi, I’m Felix <span class="wave" aria-hidden="true">👋</span></b><span>Fullstack &amp;
-                            mobile app developer</span></div>
-                </div>
-                <h1 class="up" style="--i:1">I build digital products with <span>depth.</span></h1>
-                <p class="lead up" style="--i:2">Fullstack and mobile app developer with 5+ years of experience and 30+
-                    projects delivered. I turn briefs into sites and apps that look credible, feel smooth and work on
-                    every screen.</p>
+                <h1 class="up" style="--i:1">I build websites and apps that <span>win trust.</span></h1>
+                <p class="lead up" style="--i:2">Fullstack and mobile developer with 5+ years and 30+ projects
+                    delivered. Fast, clear sites and apps that get found on Google and turn visitors into enquiries.</p>
                 <div class="row up" style="--i:3"><a class="btn main" href="#work">Explore my work</a><a class="btn"
                         href="#contact">Get in touch</a></div>
             </div>
@@ -1973,10 +1977,9 @@
                                 autocomplete="email"></div>
                         <div class="f full"><label for="m">About your project</label><textarea id="m" name="message"
                                 required placeholder="Goals, timeline, budget"></textarea></div>
-                        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                         <div class="f full">
                             <div class="row" style="align-items:center"><button class="btn main" id="sb"
-                                    type="submit">Send message</button><span id="msg" role="status"></span></div>
+                                    type="submit">Send email</button><span id="msg" role="status"></span></div>
                         </div>
                     </form>
                 </div>
@@ -2026,16 +2029,16 @@
         // RESULT PER PROJECT: add  o: 'what the project achieved'  to show a Result line in the popup.
         // ADD A PROJECT: copy a block, set dir (folder name), put its screenshots in that folder, and list their names. "url" adds a Visit live site button.
         const P = [
-            { dir: 'crossborder', t: 'Crossborder Marketing', d: 'International digital marketing agency site with campaign-led visuals and lead generation pages.', g: ['HTML', 'CSS', 'JavaScript'], th: 'cbm-01', s: ['cbm-02', 'cbm-03', 'cbm-04', 'cbm-05', 'cbm-06', 'cbm-07'] },
-            { dir: 'candorra', t: 'Candorra Asset Development', d: 'Property and asset development platform with dynamic listings, built for high-value clients.', g: ['TypeScript', 'Node.js', 'Figma'], th: 'candorra-1', s: ['candorra-2', 'candorra-3', 'candorra-4', 'candorra-5', 'candorra-6'] },
-            { dir: 'cephas-arts', t: 'Cephas Arts', d: 'Digital home for a West African music artist, with streaming links, tour dates and a strong visual identity.', g: ['React', 'TypeScript', 'CSS'], th: 'Cephas-Arts-2', s: ['Cephas-Arts-3', 'Cephas-Arts-4', 'Cephas-Arts-5', 'Cephas-Arts-6'] },
-            { dir: 'architecture', t: 'Architectural Services', d: 'A clear online presence for an architecture practice, built to help clients understand the services.', g: ['JavaScript', 'HTML/CSS', 'Node.js'], th: 'arch-01', s: ['arch-02', 'arch-03', 'arch-04', 'arch-05', 'arch-06'] },
-            { dir: 'hrm-playhouse', t: 'HRM Playhouse', d: 'Master’s-level research platform at Covenant University with an interactive interface and academic content management.', g: ['React', 'TypeScript'], th: 'hr-01', s: ['hr-02', 'hr-03', 'hr-04', 'hr-05', 'hr-06', 'hr-07'] },
-            { dir: 'e-invitation', t: 'Wedding E-Invitation', d: 'Elegant e-invitation with event details for guests and RSVP built in.', g: ['React', 'Tailwind CSS'], th: 'e-01', s: ['e-02', 'e-03', 'e-04', 'e-05', 'e-06', 'e-07'] },
+            { dir: 'crossborder', url: 'https://crossbordermarketing.africa/', t: 'Crossborder Marketing', d: 'International digital marketing agency site with campaign-led visuals and lead generation pages.', g: ['HTML', 'CSS', 'JavaScript'], th: 'cbm-01', s: ['cbm-02', 'cbm-03', 'cbm-04', 'cbm-05', 'cbm-06', 'cbm-07'] },
+            { dir: 'candorra', url: 'https://github.com/Felixkyle', lbl: 'View my GitHub', t: 'Candorra Asset Development', d: 'Property and asset development platform with dynamic listings, built for high-value clients.', g: ['TypeScript', 'Node.js', 'Figma'], th: 'candorra-1', s: ['candorra-2', 'candorra-3', 'candorra-4', 'candorra-5', 'candorra-6'] },
+            { dir: 'cephas-arts', url: 'https://github.com/Felixkyle', lbl: 'View my GitHub', t: 'Cephas Arts', d: 'Digital home for a West African music artist, with streaming links, tour dates and a strong visual identity.', g: ['React', 'TypeScript', 'CSS'], th: 'Cephas-Arts-2', s: ['Cephas-Arts-3', 'Cephas-Arts-4', 'Cephas-Arts-5', 'Cephas-Arts-6'] },
+            { dir: 'architecture', url: 'https://github.com/Felixkyle', lbl: 'View my GitHub', t: 'Architectural Services', d: 'A clear online presence for an architecture practice, built to help clients understand the services.', g: ['JavaScript', 'HTML/CSS', 'Node.js'], th: 'arch-01', s: ['arch-02', 'arch-03', 'arch-04', 'arch-05', 'arch-06'] },
+            { dir: 'hrm-playhouse', url: 'https://thehrplayhousehub.org/', t: 'HRM Playhouse', d: 'Master’s-level research platform at Covenant University with an interactive interface and academic content management.', g: ['React', 'TypeScript'], th: 'hr-01', s: ['hr-02', 'hr-03', 'hr-04', 'hr-05', 'hr-06', 'hr-07'] },
+            { dir: 'e-invitation', url: 'https://github.com/Felixkyle/revamped-dee-and-deb', lbl: 'View on GitHub', t: 'Wedding E-Invitation', d: 'Elegant e-invitation with event details for guests and RSVP built in.', g: ['React', 'Tailwind CSS'], th: 'e-01', s: ['e-02', 'e-03', 'e-04', 'e-05', 'e-06', 'e-07'] },
             // NEW PROJECTS: add cover.png, 1.png, 2.png ... to each folder, then edit the description and tags below.
-            { dir: 'kadis-digitals', url: 'https://kadisdigitals.com', t: 'Kadis Digitals', d: 'Company website for Kadis Digitals.', o: 'Found on Google within weeks of launch: 1.4K search impressions and 200+ clicks to the site’s pages.', g: ['Web design', 'Development'], th: 'cover', s: ['1', '2', '3', '4'] },
-            { dir: 'kadis-event-media', url: 'https://eventmedia.kadisdigitals.com', t: 'Kadis Event Media', d: 'Event media website on the Kadis Digitals platform.', g: ['Web design', 'Development'], th: 'cover', s: ['1', '2', '3', '4'] },
-            { dir: 'kamieo-kreations', url: 'https://kamieokreations.com', t: 'Kamieo Kreations', d: 'Brand website for Kamieo Kreations.', g: ['Web design', 'Development'], th: 'cover', s: ['1', '2', '3', '4'] }
+            { dir: 'kadis-digitals', url: 'https://kadisdigitals.com', t: 'Kadis Digitals', d: 'Company website for Kadis Digitals.', o: 'Found on Google within weeks of launch: 1.4K search impressions and 200+ clicks to the site’s pages.', g: ['Web design', 'Development'], th: 'kd_01', s: ['kd_02', 'kd_03', 'kd_04', 'kd_05', 'kd_06'] },
+            { dir: 'kadis-event-media', url: 'https://eventmedia.kadisdigitals.com', t: 'Kadis Event Media', d: 'Event media website on the Kadis Digitals platform.', g: ['Web design', 'Development'], th: 'eve_01', s: ['eve_02', 'eve_03', 'eve_04'] },
+            { dir: 'kamieo-kreations', url: 'https://kamieokreations.com', t: 'Kamieo Kreations', d: 'Brand website for Kamieo Kreations.', g: ['Web design', 'Development'], th: 'kam_01', s: ['kam_02', 'kam_03', 'kam_04', 'kam_05', 'kam_06'] }
         ];
         const A = [{ t: 'Clapmi', d: 'Livestreaming where viewers take part in live competitions and shared rewards. Collaboration.', i: 'app-img-01' }, { t: 'JKL', d: 'Afterschool program management: attendance, schedules and reports in one place. Collaboration.', i: 'app-img-02' }, { t: 'Signal Wallet', d: 'Personal project that tracks signals and market changes in crypto.', i: 'app-img-06' }];
         /* ================= EDIT YOUR CONTENT HERE ================= */
@@ -2043,6 +2046,8 @@
         const STATS = [
             { n: 5, suf: '+', l: 'Years of experience' },
             { n: 30, suf: '+', l: 'Projects delivered' },
+            { n: 500, suf: '+', l: 'HR managers onboarded', x: 'HRM Playhouse Hub' },
+            { n: 1000, suf: '+', l: 'Clicks to the site', x: 'Crossborder Marketing platform' },
             { n: 1.4, dec: 1, suf: 'K', l: 'Google impressions', x: 'Kadis Digitals site, within its first few weeks' },
             { n: 200, suf: '+', l: 'Clicks from Google', x: 'Same site, same period, pages ranking in search' }
         ];
@@ -2106,14 +2111,23 @@
         $('scene').addEventListener('pointermove', e => { const r = e.currentTarget.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5; if (!reduce) st.style.transform = `rotateY(${mx * 10}deg) rotateX(${-my * 8}deg)` });
         $('scene').addEventListener('pointerleave', () => st.style.transform = '');
         // depth gallery
-        const mob = matchMedia('(max-width:860px)'), dp = $('depth'), tk = $('track'); tk.style.height = (P.length * 85 + 15) + 'vh';
+        const mob = matchMedia('(max-width:860px)'), dp = $('depth'), tk = $('track'); tk.style.height = (P.length * 230 + 30) + 'vh';
         dp.innerHTML = P.map((p, i) => `<button class="fr" data-i="${i}" data-t="${p.t}" aria-label="Open ${p.t}">${img(p.dir, p.th, p.t)}<em class="cap"><b>${p.t}</b><span>${p.g.slice(0, 3).join(" · ")}</span></em></button>`).join('');
         const fr = [...dp.children]; let cur = -1;
-        function show(i) { if (i === cur) return; cur = i; const p = P[i]; $('it').textContent = p.t; $('id').textContent = p.d; $('ig').innerHTML = p.g.map(x => `<span>${x}</span>`).join(''); $('ic').textContent = (i + 1) + ' / ' + P.length; const v = $('iv'); if (p.url) { v.href = p.url; v.hidden = false } else v.hidden = true }
+        function show(i) { if (i === cur) return; cur = i; const p = P[i]; $('it').textContent = p.t; $('id').textContent = p.d; $('ig').innerHTML = p.g.map(x => `<span>${x}</span>`).join(''); $('ic').textContent = (i + 1) + ' / ' + P.length; const v = $('iv'); if (p.url) { v.href = p.url; v.textContent = p.lbl || 'Visit live site'; v.hidden = false } else v.hidden = true }
         function tick() {
-            if (mob.matches !== !!tick.m) { tick.m = mob.matches; tk.style.height = tick.m ? "auto" : (P.length * 85 + 15) + "vh"; if (tick.m) fr.forEach(f => f.style.cssText = "") }
+            if (mob.matches !== !!tick.m) { tick.m = mob.matches; tk.style.height = tick.m ? "auto" : (P.length * 230 + 30) + "vh"; if (tick.m) fr.forEach(f => f.style.cssText = "") }
             if (tick.m) return;
-            const r = tk.getBoundingClientRect(), vh = innerHeight, tot = r.height - vh, p = Math.max(0, Math.min(1, -r.top / tot)) * (P.length - 1);
+            const r = tk.getBoundingClientRect(), tot = r.height - innerHeight;
+            tgt = Math.max(0, Math.min(1, -r.top / tot)) * (P.length - 1);
+            if (!gl) { gl = 1; requestAnimationFrame(glide) }
+        }
+        let tgt = 0, sp = 0, gl = 0;
+        function glide() {
+            sp += (tgt - sp) * .06; if (Math.abs(tgt - sp) < .002) { sp = tgt; gl = 0 }
+            render(sp); if (gl) requestAnimationFrame(glide)
+        }
+        function render(p) {
             fr.forEach((f, i) => {
                 const d = i - p; let z = -d * 520, x = d * 70, y = d * -34, o = 1, ry = -14;
                 if (d < 0) { z = -d * 900; x = d * 260; o = Math.max(0, 1 + d * 1.7); ry = -14 + d * -6 }
@@ -2125,7 +2139,7 @@
         let tq = 0; addEventListener('scroll', () => { if (!tq) tq = requestAnimationFrame(() => { tq = 0; tick() }) }, { passive: true }); addEventListener('resize', tick); tick();
         // lightbox
         const lb = $('lb');
-        function open(i) { const p = P[i]; $('lbin').innerHTML = `<h3>${p.t}</h3><p>${p.d}</p>` + (p.o ? `<p class="outc"><b>Result</b>${p.o}</p>` : '') + `<p class="tl">Tools &amp; technologies</p><div class="chips">${(p.tools || p.g).map(x => `<span class="chip">${x}</span>`).join('')}</div>` + (p.url ? `<p><a class="btn main" href="${p.url}" target="_blank" rel="noopener">Visit live site</a></p>` : '') + p.s.map(s => img(p.dir, s, p.t + ' screen')).join(''); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.scrollTop = 0; $('x').focus() }
+        function open(i) { const p = P[i]; $('lbin').innerHTML = `<h3>${p.t}</h3><p>${p.d}</p>` + (p.o ? `<p class="outc"><b>Result</b>${p.o}</p>` : '') + `<p class="tl">Tools &amp; technologies</p><div class="chips">${(p.tools || p.g).map(x => `<span class="chip">${x}</span>`).join('')}</div>` + (p.url ? `<p><a class="btn main" href="${p.url}" target="_blank" rel="noopener">${p.lbl || 'Visit live site'}</a></p>` : '') + p.s.map(s => img(p.dir, s, p.t + ' screen')).join(''); lb.classList.add('open'); document.body.style.overflow = 'hidden'; lb.scrollTop = 0; $('x').focus() }
         dp.addEventListener('click', e => { const f = e.target.closest('.fr'); if (f) open(f.dataset.i) });
         $('ib').onclick = () => open(Math.max(0, cur));
         const close = () => { lb.classList.remove('open'); document.body.style.overflow = '' };
@@ -2186,6 +2200,8 @@
             requestAnimationFrame(frame)
         })();
         // hero drifts slower than the page
+
+        // hero drifts slower than the page
         addEventListener('scroll', () => { const y = Math.min(scrollY, 900); $('scene').style.transform = 'translateY(' + y * .14 + 'px)' }, { passive: true });
         // cursor: one small point that eases after the mouse and opens into a labelled lens over projects and links.
         (() => {
@@ -2216,13 +2232,13 @@
         $('nl').onclick = e => { if (e.target.tagName === 'A') { $('nl').classList.remove('open') } };
         const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }), { threshold: .08 });
         document.querySelectorAll('.rv').forEach(el => io.observe(el));
-        // form -> Gmail via FormSubmit (confirm the one-time activation email on first submit)
-        $('cf').addEventListener('submit', async e => {
-            e.preventDefault(); const b = $('sb'), m = $('msg'); b.disabled = true; m.textContent = 'Sending…';
-            try {
-                const r = await fetch('https://formsubmit.co/ajax/fexzi55@gmail.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ ...Object.fromEntries(new FormData(e.target)), _subject: 'New portfolio enquiry', _template: 'table' }) });
-                if (!r.ok) throw 0; e.target.reset(); m.textContent = 'Thank you. Your message has been sent.'
-            } catch { m.textContent = 'Could not send. Please email fexzi55@gmail.com directly.' } b.disabled = false
+        // form -> opens the visitor's email app with the message ready to send to you (no form service)
+        $('cf').addEventListener('submit', e => {
+            e.preventDefault(); const f = new FormData(e.target), m = $('msg'), enc = encodeURIComponent;
+            const to = 'fexzi55@gmail.com', su = 'New portfolio enquiry from ' + f.get('name');
+            const body = 'Name: ' + f.get('name') + '\nEmail: ' + f.get('email') + '\n\n' + f.get('message');
+            location.href = 'mailto:' + to + '?subject=' + enc(su) + '&body=' + enc(body);
+            m.innerHTML = 'Opening your email app. Nothing happened? <a href="https://mail.google.com/mail/?view=cm&to=' + to + '&su=' + enc(su) + '&body=' + enc(body) + '" target="_blank" rel="noopener" style="text-decoration:underline">Send with Gmail</a>'
         });
     </script>
 </body>
